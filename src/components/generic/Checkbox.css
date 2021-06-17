@@ -6,12 +6,12 @@
   height: 1.1rem;
   border-radius: 3px;
   border: 2px solid currentColor;
-  transition: background-color 0.1s;
+  transition: background-color 0.15s;
   cursor: pointer;
 }
 
 .input:checked {
-  transition: background-color 0.1s;
+  transition: background-color 0.15s;
   background-color: currentColor;
 }
 
