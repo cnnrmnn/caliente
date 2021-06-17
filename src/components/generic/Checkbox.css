@@ -1,0 +1,31 @@
+.input {
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 3px;
+  border: 2px solid currentColor;
+  transition: background-color 0.1s;
+  cursor: pointer;
+}
+
+.input:checked {
+  transition: background-color 0.1s;
+  background-color: currentColor;
+}
+
+.input::before {
+  content: url(../../../assets/check.svg);
+  visibility: hidden;
+}
+
+.input:checked::before {
+  visibility: visible;
+}
+
+.input:disabled {
+  border-color: lightgray;
+  background-color: rgb(240, 240, 240);
+  cursor: not-allowed;
+}
