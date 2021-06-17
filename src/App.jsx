@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { me } from './api/user';
 import UserContext from './context/user';
+import Main from './components/Main';
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -13,7 +14,7 @@ export default function App() {
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
-      <h1>{user ? user.email : 'hi'}</h1>
+      <Main />
     </UserContext.Provider>
   );
 }

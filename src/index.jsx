@@ -1,4 +1,7 @@
 import { render } from 'react-dom';
 import App from './App';
+import './root.css';
 
-render(<App />, document.getElementById('root'));
+root = document.getElementById('root');
+root.style.height = '100%';
+render(<App />, root);
