@@ -22,7 +22,11 @@ export default function Setup() {
           Which calendars would you like to use?
         </p>
         {calendars.map((calendar) => (
-          <LabeledCheckbox key={calendar.id} text={calendar.name} />
+          <LabeledCheckbox
+            key={calendar.id}
+            text={calendar.name}
+            color={calendar.background}
+          />
         ))}
       </Pane>
     </div>
