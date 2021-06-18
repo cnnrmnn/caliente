@@ -1,0 +1,24 @@
+@keyframes background-position {
+  from {
+    background-position: 0%;
+  }
+  to {
+    background-position: 100%;
+  }
+}
+
+.welcome {
+  background: linear-gradient(
+    90deg,
+    rgba(250, 145, 3, 1) 0%,
+    rgba(255, 0, 67, 1) 100%
+  );
+  background-size: 400% 400%;
+  background-clip: text;
+  animation: linear 5s infinite alternate background-position;
+  color: transparent;
+}
+
+.subheading {
+  font-weight: 500;
+}
