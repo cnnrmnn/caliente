@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Button from '../generic/Button';
 import LabeledCheckbox from '../generic/LabeledCheckbox';
-import { getCalendars } from '../../api/calendar';
+import { getCalendars, updateCalendar } from '../../api/calendar';
 import styles from './CalendarSetupForm.css';
 
 export default function CalendarSetupForm() {
@@ -12,6 +12,15 @@ export default function CalendarSetupForm() {
     }
     updateCalendars();
   }, []);
+
+  async function toggleCalendarActive(calendar) {
+    const updated = await updateCalendar(calendar.id, {
+      active: !calendar.active,
+    });
+    setCalendars((oldCalendars) =>
+      oldCalendars.map((old) => (old.id == updated.id ? updated : old))
+    );
+  }
 
   return (
     <form>
@@ -26,7 +35,7 @@ export default function CalendarSetupForm() {
           text={calendar.name}
           color={calendar.background}
           checked={calendar.active}
-          onClick={() => alert('hi')}
+          onClick={() => toggleCalendarActive(calendar)}
         />
       ))}
       <Button text="Continue" />
