@@ -1,0 +1,25 @@
+.button {
+  font-family: 'Inter';
+  font-size: 0.9rem;
+  padding: 7.5px;
+  font-weight: 500;
+  border-radius: 7.5px;
+  cursor: pointer;
+  border: 2px solid black;
+  color: black;
+  transition: color 0.3s;
+  background-color: white;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  color: white;
+  transition: color 0.3s;
+  background-color: black;
+  transition: background-color 0.3s;
+}
+
+.button:active {
+  transform: scale(0.95);
+  transition: transform 0.1s;
+}
