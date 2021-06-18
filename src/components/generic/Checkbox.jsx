@@ -6,7 +6,7 @@ export default function Checkbox({ color, checked, onClick }) {
       className={styles.input}
       type="checkbox"
       checked={checked}
-      onClick={onClick}
+      onChange={onClick}
       style={{ color }}
     />
   );
