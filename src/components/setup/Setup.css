@@ -5,6 +5,15 @@
   align-items: center;
 }
 
+@keyframes background-position {
+  from {
+    background-position: 0%;
+  }
+  to {
+    background-position: 100%;
+  }
+}
+
 .welcome {
   background: linear-gradient(
     90deg,

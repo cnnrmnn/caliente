@@ -4,15 +4,6 @@
   font-family: 'Inter';
 }
 
-@keyframes background-position {
-  from {
-    background-position: 0%;
-  }
-  to {
-    background-position: 100%;
-  }
-}
-
 html,
 body {
   height: 100%;
