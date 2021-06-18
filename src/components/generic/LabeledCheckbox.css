@@ -5,6 +5,10 @@
   font-size: 0.9rem;
 }
 
+.label:hover {
+  cursor: pointer;
+}
+
 .checkbox {
   margin-right: 2px;
 }
