@@ -4,8 +4,31 @@
   font-family: 'Inter';
 }
 
+@keyframes background-position {
+  from {
+    background-position: 0%;
+  }
+  to {
+    background-position: 100%;
+  }
+}
+
 html,
 body {
   height: 100%;
   margin: 0;
+}
+
+h1 {
+  margin: 10px;
+}
+h2 {
+  margin: 10px;
+}
+h3 {
+  margin: 10px;
+}
+
+p {
+  margin: 10px;
 }
