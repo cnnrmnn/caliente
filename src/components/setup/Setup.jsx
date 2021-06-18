@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Pane from './Pane';
 import CalendarSetupForm from './CalendarSetupForm';
+import ColorSetupForm from './ColorSetupForm';
 import { getCalendars } from '../../api/calendar';
 import styles from './Setup.css';
 
@@ -10,8 +11,8 @@ export default function Setup() {
     switch (content) {
       case 'calendar':
         return <CalendarSetupForm setContent={setContent} />;
-      case 'colors':
-        return <h1>Colors</h1>;
+      case 'color':
+        return <ColorSetupForm setContent={setContent} />;
     }
   }
   return (

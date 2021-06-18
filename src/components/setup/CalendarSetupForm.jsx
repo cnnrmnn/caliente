@@ -23,7 +23,7 @@ export default function CalendarSetupForm({ setContent }) {
   }
 
   return (
-    <form onSubmit={() => setContent('colors')}>
+    <form onSubmit={() => setContent('color')}>
       <h1 className={styles.welcome}>Welcome!</h1>
       <h3>Let's get started</h3>
       <p className={styles.subheading}>
