@@ -1,8 +1,15 @@
-import { fetchWithCredentials } from './fetch';
+import { fetchWithDefaults } from './fetch';
+
+const CALENDARS_ENDPOINT = `${process.env.SERVER_URL}/calendars`;
 
 export async function getCalendars() {
-  const body = await fetchWithCredentials(
-    `${process.env.SERVER_URL}/calendars`
-  ).then((res) => res.json());
-  return body;
+  return fetchWithDefaults(CALENDARS_ENDPOINT);
+}
+
+export async function updateCalendar(id, body) {
+  const { calendar } = await fetchWithDefaults(`${CALENDARS_ENDPOINT}/${id}`, {
+    method: 'PATCH',
+    body: body,
+  });
+  return calendar;
 }

@@ -1,8 +1,5 @@
-import { fetchWithCredentials } from './fetch';
+import { fetchWithDefaults } from './fetch';
 
 export async function me() {
-  const body = await fetchWithCredentials(
-    `${process.env.SERVER_URL}/users/me`
-  ).then((res) => res.json());
-  return body.user;
+  return fetchWithDefaults(`${process.env.SERVER_URL}/users/me`);
 }
