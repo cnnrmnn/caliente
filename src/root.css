@@ -10,16 +10,6 @@ body {
   margin: 0;
 }
 
-h1 {
-  margin: 10px;
-}
-h2 {
-  margin: 10px;
-}
-h3 {
-  margin: 10px;
-}
-
-p {
+h1, h2, h3, p {
   margin: 10px;
 }
