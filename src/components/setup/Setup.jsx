@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Pane from './Pane';
 import LabeledCheckbox from '../generic/LabeledCheckbox';
+import Button from '../generic/Button';
 import { getCalendars } from '../../api/calendar';
 import styles from './Setup.css';
 
@@ -16,18 +17,21 @@ export default function Setup() {
   return (
     <div className={styles.container}>
       <Pane>
-        <h1 className={styles.welcome}>Welcome!</h1>
-        <h3>Let's get started</h3>
-        <p className={styles.subheading}>
-          Which calendars would you like to use?
-        </p>
-        {calendars.map((calendar) => (
-          <LabeledCheckbox
-            key={calendar.id}
-            text={calendar.name}
-            color={calendar.background}
-          />
-        ))}
+        <div className={styles.content}>
+          <h1 className={styles.welcome}>Welcome!</h1>
+          <h3>Let's get started</h3>
+          <p className={styles.subheading}>
+            Which calendars would you like to use?
+          </p>
+          {calendars.map((calendar) => (
+            <LabeledCheckbox
+              key={calendar.id}
+              text={calendar.name}
+              color={calendar.background}
+            />
+          ))}
+          <Button text="Continue" />
+        </div>
       </Pane>
     </div>
   );

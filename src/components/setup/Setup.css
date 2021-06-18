@@ -5,15 +5,6 @@
   align-items: center;
 }
 
-@keyframes background-position {
-  from {
-    background-position: 0%;
-  }
-  to {
-    background-position: 100%;
-  }
-}
-
 .welcome {
   background: linear-gradient(
     90deg,
@@ -24,7 +15,10 @@
   background-clip: text;
   animation: linear 5s infinite alternate background-position;
   color: transparent;
-  margin: 10px;
+}
+
+.content {
+  margin: 10px 7.5px;
 }
 
 .subheading {
