@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Button from '../generic/Button';
 import LabeledCheckbox from '../generic/LabeledCheckbox';
+import TextInput from '../generic/TextInput';
 import { getColors, updateColor } from '../../api/color';
 import styles from './ColorSetupForm.css';
 
@@ -15,7 +16,6 @@ export default function ColorSetupForm({ setContent }) {
 
   async function setColor(color, body) {
     const updated = await updateColor(color.id, body);
-    console.log(updated);
     setColors((oldColors) =>
       oldColors.map((old) => (old.id == updated.id ? updated : old))
     );
@@ -28,7 +28,7 @@ export default function ColorSetupForm({ setContent }) {
         {colors.map((color) => (
           <LabeledCheckbox
             key={color.id}
-            text={<input type="text" />}
+            text={<TextInput placeholder="Label" />}
             color={color.background}
             checked={color.active}
             onClick={() => setColor(color, { active: !color.active })}
