@@ -4,7 +4,7 @@ import LabeledCheckbox from '../generic/LabeledCheckbox';
 import { getCalendars, updateCalendar } from '../../api/calendar';
 import styles from './CalendarSetupForm.css';
 
-export default function CalendarSetupForm() {
+export default function CalendarSetupForm({ setContent }) {
   const [calendars, setCalendars] = useState([]);
   useEffect(() => {
     async function updateCalendars() {
@@ -23,7 +23,7 @@ export default function CalendarSetupForm() {
   }
 
   return (
-    <form>
+    <form onSubmit={() => setContent('colors')}>
       <h1 className={styles.welcome}>Welcome!</h1>
       <h3>Let's get started</h3>
       <p className={styles.subheading}>
