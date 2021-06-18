@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   margin: 5px 15px;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .label:hover {
@@ -10,5 +10,5 @@
 }
 
 .checkbox {
-  margin-right: 2px;
+  margin-right: 3px;
 }
