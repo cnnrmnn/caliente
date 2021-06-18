@@ -15,6 +15,7 @@
   );
   background-size: 400% 400%;
   background-clip: text;
+  -webkit-background-clip: text;
   animation: linear 5s infinite alternate background-position;
   color: transparent;
 }
