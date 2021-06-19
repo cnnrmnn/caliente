@@ -7,9 +7,8 @@ export async function getCalendars() {
 }
 
 export async function updateCalendar(id, body) {
-  const { calendar } = await fetchWithDefaults(`${CALENDARS_ENDPOINT}/${id}`, {
+  return await fetchWithDefaults(`${CALENDARS_ENDPOINT}/${id}`, {
     method: 'PATCH',
     body: body,
   });
-  return calendar;
 }
