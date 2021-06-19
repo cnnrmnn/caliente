@@ -38,7 +38,9 @@ export default function CalendarSetupForm({ setContent }) {
           onClick={() => toggleCalendarActive(calendar)}
         />
       ))}
-      <Button text="Continue" />
+      <div className={styles.button}>
+        <Button text="Continue" type="submit" />
+      </div>
     </form>
   );
 }
