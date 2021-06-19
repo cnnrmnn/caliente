@@ -6,27 +6,21 @@ import { getCalendars } from '../../api/calendar';
 import styles from './Setup.css';
 
 export default function Setup() {
-  const [content, setContent] = useState('calendar');
+  const [form, setForm] = useState('calendar');
 
-  function closeSetup() {
-    alert('hi!');
-  }
-
-  function contentComponent() {
-    switch (content) {
+  function formComponent() {
+    switch (form) {
       case 'calendar':
-        return <CalendarSetupForm setContent={setContent} />;
+        return <CalendarSetupForm setForm={setForm} />;
       case 'color':
-        return <ColorSetupForm setContent={setContent} />;
-      case 'close':
-        closeSetup();
+        return <ColorSetupForm setForm={setForm} />;
     }
   }
 
   return (
     <div className={styles.container}>
       <Pane>
-        <div className={styles.content}>{contentComponent()}</div>
+        <div className={styles.content}>{formComponent()}</div>
       </Pane>
     </div>
   );

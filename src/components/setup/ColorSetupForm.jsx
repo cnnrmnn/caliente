@@ -1,11 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import Button from '../generic/Button';
 import LabeledCheckbox from '../generic/LabeledCheckbox';
 import TextInput from '../generic/TextInput';
 import { getColors, updateColor } from '../../api/color';
+import { updateUser } from '../../api/user';
+import UserContext from '../../context/user';
 import styles from './ColorSetupForm.css';
 
-export default function ColorSetupForm({ setContent }) {
+export default function ColorSetupForm({ setForm }) {
+  const { user, setUser } = useContext(UserContext);
+
   const [colors, setColors] = useState([]);
   useEffect(() => {
     async function updateColors() {
@@ -32,8 +36,14 @@ export default function ColorSetupForm({ setContent }) {
     mergeUpdatedColor(updated);
   }
 
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const updated = await updateUser(user.id, { setup: true });
+    setUser(updated);
+  }
+
   return (
-    <form onSubmit={() => setContent('close')}>
+    <form onSubmit={handleSubmit}>
       <h3>Which colors should we track?</h3>
       <div className={styles.colors}>
         {colors.map((color) => (
@@ -54,7 +64,7 @@ export default function ColorSetupForm({ setContent }) {
         ))}
       </div>
       <div className={styles.buttons}>
-        <Button text="Back" onClick={() => setContent('calendar')} />
+        <Button text="Back" onClick={() => setForm('calendar')} />
         <Button text="Continue" type="submit" />
       </div>
     </form>
