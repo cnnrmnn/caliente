@@ -7,14 +7,22 @@ import styles from './Setup.css';
 
 export default function Setup() {
   const [content, setContent] = useState('calendar');
+
+  function closeSetup() {
+    alert('hi!');
+  }
+
   function contentComponent() {
     switch (content) {
       case 'calendar':
         return <CalendarSetupForm setContent={setContent} />;
       case 'color':
         return <ColorSetupForm setContent={setContent} />;
+      case 'close':
+        closeSetup();
     }
   }
+
   return (
     <div className={styles.container}>
       <Pane>

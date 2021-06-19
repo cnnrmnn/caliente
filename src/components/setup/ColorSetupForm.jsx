@@ -33,7 +33,7 @@ export default function ColorSetupForm({ setContent }) {
   }
 
   return (
-    <form onSubmit={() => setContent('calendar')}>
+    <form onSubmit={() => setContent('close')}>
       <h3>Which colors should we track?</h3>
       <div className={styles.colors}>
         {colors.map((color) => (
@@ -53,7 +53,10 @@ export default function ColorSetupForm({ setContent }) {
           />
         ))}
       </div>
-      <Button text="Continue" />
+      <div className={styles.buttons}>
+        <Button text="Back" onClick={() => setContent('calendar')} />
+        <Button text="Continue" type="submit" />
+      </div>
     </form>
   );
 }
