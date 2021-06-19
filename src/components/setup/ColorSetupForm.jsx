@@ -14,11 +14,22 @@ export default function ColorSetupForm({ setContent }) {
     updateColors();
   }, []);
 
-  async function setColor(color, body) {
-    const updated = await updateColor(color.id, body);
+  function mergeUpdatedColor(updated) {
+    // Could use array indexes to make this more performant, but this is easier
+    // to read.
     setColors((oldColors) =>
       oldColors.map((old) => (old.id == updated.id ? updated : old))
     );
+  }
+
+  function updateColorLocally(color, body) {
+    const updated = { ...color, ...body };
+    mergeUpdatedColor(updated);
+  }
+
+  async function setColor(color, body) {
+    const updated = await updateColor(color.id, body);
+    mergeUpdatedColor(updated);
   }
 
   return (
@@ -28,7 +39,14 @@ export default function ColorSetupForm({ setContent }) {
         {colors.map((color) => (
           <LabeledCheckbox
             key={color.id}
-            text={<TextInput placeholder="Label" />}
+            text={
+              <TextInput
+                placeholder="Label"
+                value={color.name}
+                setValue={(value) => updateColorLocally(color, { name: value })}
+                onBlur={() => setColor(color, { name: color.name })}
+              />
+            }
             color={color.background}
             checked={color.active}
             onClick={() => setColor(color, { active: !color.active })}
