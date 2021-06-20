@@ -1,0 +1,33 @@
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+@keyframes background-position {
+  from {
+    background-position: 0%;
+  }
+  to {
+    background-position: 100%;
+  }
+}
+
+.logo {
+  background: linear-gradient(
+    90deg,
+    rgba(250, 145, 3, 1) 0%,
+    rgba(255, 0, 67, 1) 100%
+  );
+  background-size: 400% 400%;
+  animation: linear 5s infinite alternate background-position;
+  margin: 0;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  margin: 10px;
+  font-size: 1.75rem;
+}
