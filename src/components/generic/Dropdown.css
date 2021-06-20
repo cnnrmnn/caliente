@@ -1,0 +1,35 @@
+.container {
+  position: relative;
+}
+
+.dropdown {
+  padding: 5px;
+  padding-right: 25px;
+  background: url(../../../assets/chevron-down.svg) center right / 24px
+    no-repeat;
+}
+
+.dropdownOpen {
+  background-image: url(../../../assets/chevron-up.svg);
+}
+
+.title {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.dropdown:hover {
+  cursor: pointer;
+}
+
+.items {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: white;
+  padding: 10px;
+  margin: 0;
+}
