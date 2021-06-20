@@ -11,3 +11,11 @@ export async function updateUser(id, body) {
     body: body,
   });
 }
+
+export async function logOut() {
+  // Returns no content so no JSON to parse
+  return fetch(`${USERS_ENDPOINT}/logout`, {
+    credentials: 'include',
+    mode: 'cors',
+  });
+}
