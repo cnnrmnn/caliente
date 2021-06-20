@@ -7,7 +7,11 @@ import styles from './Main.css';
 export default function Main() {
   const { user } = useContext(UserContext);
 
-  return (
-    <div className={styles.main}>{user?.setup ? <Dashboard /> : <Setup />}</div>
-  );
+  function mainComponent() {
+    if (user == 'unset') return <h1>Loading...</h1>;
+    else if (!user) return <h1>Sign in</h1>;
+    else if (user?.setup) return <Dashboard />;
+    else return <Setup />;
+  }
+  return <div className={styles.main}>{mainComponent()}</div>;
 }

@@ -4,10 +4,12 @@ import UserContext from './context/user';
 import Main from './components/Main';
 
 export default function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState('unset');
   useEffect(() => {
     async function updateUser() {
-      setUser(await me());
+      const currentUser = await me();
+      if (currentUser.hasOwnProperty('error')) setUser(null);
+      else setUser(currentUser);
     }
     updateUser();
   }, []);
