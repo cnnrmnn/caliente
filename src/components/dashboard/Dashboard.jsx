@@ -1,5 +1,7 @@
-import Navbar from './Navbar';
+import { useState, useEffect } from 'react';
 import { Pie } from 'react-chartjs-2';
+import Navbar from './Navbar';
+import { getEvents } from '../../api/event';
 import styles from './Dashboard.css';
 
 const data = {
@@ -29,22 +31,36 @@ const options = {
     tooltip: {
       backgroundColor: 'white',
       bodyColor: 'black',
-      titleFont: {
+      bodyFont: {
         family: 'Inter',
+        weight: '500',
       },
     },
   },
 };
 
 export default function Dashboard() {
+  const [events, setEvents] = useState(null);
+
+  useEffect(() => {
+    async function updateEvents() {
+      setEvents(
+        await getEvents('2021-05-16T23:54:59+00:00', '2021-06-30T12:00:00.000Z')
+      );
+    }
+    updateEvents();
+  }, []);
+
   return (
     <div className={styles.dashboard}>
       <Navbar />
-      <div className={styles.container}>
-        <div className={styles.chart}>
-          <Pie data={data} options={options} />
+      {events && (
+        <div className={styles.container}>
+          <div className={styles.chart}>
+            <Pie data={data} options={options} />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
