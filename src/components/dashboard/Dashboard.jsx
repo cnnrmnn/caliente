@@ -2,45 +2,20 @@ import { useState, useEffect } from 'react';
 import { Pie } from 'react-chartjs-2';
 import Navbar from './Navbar';
 import { getEvents } from '../../api/event';
+import { getColors } from '../../api/color';
 import styles from './Dashboard.css';
 
-const data = {
-  labels: [' Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-  datasets: [
-    {
-      data: [12, 19, 3, 5, 2, 3],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)',
-      ],
-      borderColor: 'black',
-      borderWidth: 2,
-    },
-  ],
-};
-
-const options = {
-  plugins: {
-    legend: {
-      display: false,
-    },
-    tooltip: {
-      backgroundColor: 'white',
-      bodyColor: 'black',
-      bodyFont: {
-        family: 'Inter',
-        weight: '500',
-      },
-    },
-  },
-};
-
 export default function Dashboard() {
-  const [events, setEvents] = useState(null);
+  const [colors, setColors] = useState();
+
+  useEffect(() => {
+    async function updateColors() {
+      setColors(await getColors());
+    }
+    updateColors();
+  }, []);
+
+  const [events, setEvents] = useState();
 
   useEffect(() => {
     async function updateEvents() {
@@ -50,6 +25,53 @@ export default function Dashboard() {
     }
     updateEvents();
   }, []);
+
+  let labels = [],
+    statistics = [],
+    backgrounds = [];
+
+  if (colors && events) {
+    for (const color of colors) {
+      if (color.active) {
+        let duration = events[color.id];
+        if (typeof duration == 'string') {
+          const split = duration.split('/');
+          duration = split[0] / split[1];
+        }
+        statistics.push(duration);
+        labels.push(` ${color.name}`);
+        backgrounds.push(color.background);
+      }
+    }
+  }
+
+  const data = {
+    labels: labels,
+    datasets: [
+      {
+        data: statistics,
+        backgroundColor: backgrounds,
+        borderColor: 'black',
+        borderWidth: 2,
+      },
+    ],
+  };
+
+  const options = {
+    plugins: {
+      legend: {
+        display: false,
+      },
+      tooltip: {
+        backgroundColor: 'white',
+        bodyColor: 'black',
+        bodyFont: {
+          family: 'Inter',
+          weight: '500',
+        },
+      },
+    },
+  };
 
   return (
     <div className={styles.dashboard}>
