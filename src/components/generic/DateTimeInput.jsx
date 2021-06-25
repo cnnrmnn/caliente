@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import styles from './DateTimeInput.css';
 
 export default function DateTimeInput({ value, setValue }) {
