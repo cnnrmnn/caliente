@@ -1,11 +1,15 @@
 import { useState, useEffect } from 'react';
 import { Pie } from 'react-chartjs-2';
 import Navbar from './Navbar';
+import DateTimeInput from '../generic/DateTimeInput';
 import { getEvents } from '../../api/event';
 import { getColors } from '../../api/color';
 import styles from './Dashboard.css';
 
 export default function Dashboard() {
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+
   const [colors, setColors] = useState();
 
   useEffect(() => {
@@ -20,11 +24,11 @@ export default function Dashboard() {
   useEffect(() => {
     async function updateEvents() {
       setEvents(
-        await getEvents('2021-05-16T23:54:59+00:00', '2021-06-30T12:00:00.000Z')
+        await getEvents(startDate.toISOString(), endDate.toISOString())
       );
     }
     updateEvents();
-  }, []);
+  }, [startDate, endDate]);
 
   let labels = [],
     statistics = [],
@@ -78,6 +82,16 @@ export default function Dashboard() {
       <Navbar />
       {events && (
         <div className={styles.container}>
+          <div className={styles.inputs}>
+            <label>
+              Start
+              <DateTimeInput value={startDate} setValue={setStartDate} />
+            </label>
+            <label>
+              End
+              <DateTimeInput value={endDate} setValue={setEndDate} />
+            </label>
+          </div>
           <div className={styles.chart}>
             <Pie data={data} options={options} />
           </div>
